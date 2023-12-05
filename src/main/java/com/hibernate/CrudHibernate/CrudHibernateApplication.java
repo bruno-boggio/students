@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.hibernate.CrudHibernate.entity.Student;
+
 import com.hibernate.CrudHibernate.entity.dao.StudentDAO;
 
 @SpringBootApplication
@@ -27,23 +27,39 @@ public class CrudHibernateApplication {
 
               // queryForStudents(studentDAO);
 
-              updateStudent(studentDAO);
+              // updateStudent(studentDAO);
+
+              // deleteStudent(studentDAO);
+
+              deleteAllStudents(studentDAO);
             };
         }
 
-        private void updateStudent(StudentDAO studentDAO) {
-            // retrieve student by id
-            int studentId = 1;
-            System.out.println("Getting student with id :" + studentId);
-            Student myStudent = studentDAO.findById(studentId);
-            // change first name
-            System.out.println("Updating student");
-            myStudent.setFirstName("brian");
-            // update the student
-            studentDAO.update(myStudent);
-            // display the updated student
-            System.out.println("Updated student: " + myStudent);
+        private void deleteAllStudents(StudentDAO studentDAO) {
+            System.out.println("Deleting all students...");
+            int numRowsDeleted = studentDAO.deleteAll();
+            System.out.println("Deleted row count: " + numRowsDeleted);
         }
+
+        // private void deleteStudent(StudentDAO studentDAO) {
+        //     int studentId = 3;
+        //     System.out.println("Deleting the student: " + studentId);
+        //     studentDAO.delete(studentId);
+        // }
+
+        // private void updateStudent(StudentDAO studentDAO) {
+        //     // retrieve student by id
+        //     int studentId = 1;
+        //     System.out.println("Getting student with id :" + studentId);
+        //     Student myStudent = studentDAO.findById(studentId);
+        //     // change first name
+        //     System.out.println("Updating student");
+        //     myStudent.setFirstName("brian");
+        //     // update the student
+        //     studentDAO.update(myStudent);
+        //     // display the updated student
+        //     System.out.println("Updated student: " + myStudent);
+        // }
 
 
 
